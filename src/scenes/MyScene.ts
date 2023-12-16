@@ -16,19 +16,12 @@ const HISTORY_MAX_SIZE = 10
 export default class MyScene extends Phaser.Scene {
     private santa?: Image
     private santaVelocityX: number = SANTA_MOVE_SPEED
-    private isGameOver: boolean
-    private score: number
+    private isGameOver: boolean = false
+    private score: number = 0
     private dropPresentEvent?: Phaser.Time.TimerEvent
-    private dropPresentProbability: number
-    private dropTonakaiProbability: number
+    private dropPresentProbability: number = DROP_PRESENT_PROBABILITY
+    private dropTonakaiProbability: number = DROP_TONAKAI_PROBABILITY
     private recentDropHistories: ("drop"|"nodrop")[] = []
-    constructor() {
-        super({key: "myscene"})
-        this.isGameOver = false
-        this.score = 0
-        this.dropPresentProbability = DROP_PRESENT_PROBABILITY
-        this.dropTonakaiProbability = DROP_TONAKAI_PROBABILITY
-    }
 
     preload() {
         this.load.image("santa", "./santa.png")
@@ -38,18 +31,19 @@ export default class MyScene extends Phaser.Scene {
     create() {
         this.matter.world.setBounds(0, 0, this.sys.canvas.width, this.sys.canvas.height)
 
+        // init
         this.isGameOver = false
         this.score = 0
         this.dropPresentProbability = DROP_PRESENT_PROBABILITY
         this.dropTonakaiProbability = DROP_TONAKAI_PROBABILITY
         this.recentDropHistories = []
+        this.santaVelocityX = SANTA_MOVE_SPEED
 
         // サンタ爆誕
         this.santa =
             this.matter.add.image( 50, 60, "santa")
                 .setDisplaySize(SANTA_SIZE, SANTA_SIZE)
                 .setStatic(true)
-        this.santaVelocityX = SANTA_MOVE_SPEED
 
         //
         this.dropPresentEvent = this.time.addEvent({
