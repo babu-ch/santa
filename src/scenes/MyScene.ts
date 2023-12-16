@@ -137,7 +137,7 @@ export default class MyScene extends Phaser.Scene {
         const isInvertImage = lottery(1);
         // たまにトナカイ落とす。
         if (lottery(this.dropTonakaiProbability)) {
-            const tonakai = this.matter.add.image( this.santa!.x, this.santa!.y+100, "tonakai")
+            const tonakai = this.matter.add.image( this.santa!.x, this.santa!.y+this.santa!.displayHeight, "tonakai")
                 .setDisplaySize(ITEM_SIZE, ITEM_SIZE)
                 .setInteractive()
                 .setVelocityX(random(-2, 2))
@@ -152,7 +152,7 @@ export default class MyScene extends Phaser.Scene {
             return;
         }
         // プレゼント落とす。
-        const present = this.matter.add.image(  this.santa!.x, this.santa!.y+100,"present")
+        const present = this.matter.add.image(  this.santa!.x, this.santa!.y+this.santa!.displayHeight,"present")
             .setDisplaySize(ITEM_SIZE, ITEM_SIZE)
             .setInteractive()
             .setVelocityX(random(-2, 2))
