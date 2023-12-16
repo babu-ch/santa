@@ -111,26 +111,30 @@ export default class MyScene extends Phaser.Scene {
         });
     }
 
-    dropPresent() {
+    shouldDrop() {
         const isDrop =
             this.recentDropHistories.filter(history => history === "nodrop").length === 10
         // 落とすかどうか 10回連続で落としてないなら強制で落とす
         if (!isDrop && !lottery(this.dropPresentProbability < 1 ? 1 : this.dropPresentProbability)) {
-            this.recentDropHistories.push("nodrop")
-            this.recentDropHistories = this.recentDropHistories.slice(-10)
-            return
+            this.pushDropHistory("nodrop")
+            return false
         }
         // あと2回連続も落とさない
         if (last(this.recentDropHistories) === "drop") {
-            this.recentDropHistories.push("nodrop")
-            this.recentDropHistories = this.recentDropHistories.slice(-10)
+            this.pushDropHistory("nodrop")
+            return false
+        }
+        this.pushDropHistory("drop")
+        return true
+    }
+
+    dropPresent() {
+        if (!this.shouldDrop()) {
             return
         }
 
-        this.recentDropHistories.push("drop");
-        this.recentDropHistories = this.recentDropHistories.slice(-10)
         // 50%で画像を反転するか決める
-        const isInvertImage = lottery(1)
+        const isInvertImage = lottery(1);
         // たまにトナカイ落とす。
         if (lottery(this.dropTonakaiProbability)) {
             const tonakai = this.matter.add.image( this.santa!.x, this.santa!.y+100, "tonakai")
@@ -196,6 +200,11 @@ export default class MyScene extends Phaser.Scene {
             this.scene.restart()
         })
         button.setInteractive()
+    }
+
+    pushDropHistory(history:"drop"|"nodrop") {
+        this.recentDropHistories.push(history)
+        this.recentDropHistories = this.recentDropHistories.slice(-10)
     }
 }
 
