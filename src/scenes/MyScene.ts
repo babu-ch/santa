@@ -11,6 +11,7 @@ const DROP_TONAKAI_PROBABILITY = 6
 const SANTA_SIZE = 100
 const ITEM_SIZE = 100
 const DROP_ITEM_DELAY = 200
+const HISTORY_MAX_SIZE = 10
 
 export default class MyScene extends Phaser.Scene {
     private santa?: Image
@@ -113,7 +114,7 @@ export default class MyScene extends Phaser.Scene {
 
     shouldDrop() {
         const isDrop =
-            this.recentDropHistories.filter(history => history === "nodrop").length === 10
+            this.recentDropHistories.filter(history => history === "nodrop").length === HISTORY_MAX_SIZE
         // 落とすかどうか 10回連続で落としてないなら強制で落とす
         if (!isDrop && !lottery(this.dropPresentProbability < 1 ? 1 : this.dropPresentProbability)) {
             this.pushDropHistory("nodrop")
@@ -204,7 +205,7 @@ export default class MyScene extends Phaser.Scene {
 
     pushDropHistory(history:"drop"|"nodrop") {
         this.recentDropHistories.push(history)
-        this.recentDropHistories = this.recentDropHistories.slice(-10)
+        this.recentDropHistories = this.recentDropHistories.slice(-HISTORY_MAX_SIZE)
     }
 }
 
