@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <style>
+        canvas {
+            margin: auto;
+            display: block;
+            border: 1px solid #CCC;
+        }
+        body {
+            margin: 0;
+            padding: 30px;
+        }
+        @media screen and (max-width: 800px) {
+            body {
+                background: #000;
+                margin: 0;
+                padding: 0;
+            }
+            canvas {
+                border: 0px solid #CCC;
+            }
+            a {
+                display: none;
+            }
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
