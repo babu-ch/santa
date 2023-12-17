@@ -68,10 +68,10 @@ export default class MyScene extends Phaser.Scene {
         this.setCollision()
 
         // 撮影用にスペースキー押すとpauseする
-        if (this.input.keyboard) {
-            const spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
-            spaceKey.on("down",  () => { this.scene.pause() })
-        }
+        // if (this.input.keyboard) {
+        //     const spaceKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
+        //     spaceKey.on("down",  () => { this.scene.pause() })
+        // }
     }
 
     update() {
