@@ -5,7 +5,7 @@ import {BodyType} from "matter";
 import {last, random} from "lodash";
 import {isPc} from "../util.ts";
 
-const SANTA_MOVE_SPEED = isPc ? 5 : 3
+const SANTA_MOVE_SPEED = 5
 const DROP_PRESENT_PROBABILITY = 20
 const DROP_TONAKAI_PROBABILITY = 5
 const SANTA_SIZE = 100
