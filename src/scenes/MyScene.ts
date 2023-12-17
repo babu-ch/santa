@@ -7,7 +7,7 @@ import {isPc} from "../util.ts";
 
 const SANTA_MOVE_SPEED = isPc ? 5 : 3
 const DROP_PRESENT_PROBABILITY = 20
-const DROP_TONAKAI_PROBABILITY = 6
+const DROP_TONAKAI_PROBABILITY = 5
 const SANTA_SIZE = 100
 const ITEM_SIZE = 100
 // このmsの周期でさんたが落とすイベントを実行
