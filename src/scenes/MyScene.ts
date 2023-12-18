@@ -14,9 +14,9 @@ const ITEM_SIZE = 100
 const DROP_ITEM_DELAY = 200
 const HISTORY_MAX_SIZE = 10
 // プレゼント取ったときのスコア
-const PRESENT_SCORE = 10
+const PRESENT_SCORE = 20
 // トナカイ落としたときのスコア
-const TONAKAI_SCORE = 10
+const TONAKAI_SCORE = 20
 
 export default class MyScene extends Phaser.Scene {
     // サンタさん
