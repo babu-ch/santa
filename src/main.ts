@@ -13,7 +13,7 @@ const config: Phaser.Types.Core.GameConfig = {
         default: "matter",
         matter: {
             // debug: true,
-            gravity: { y: isPc ? 0.2 : 1.2 },
+            gravity: { y: isPc ? 0.2 : 1.2 }, // PCとスマホ実機で落下速度が違ったのでとりあえず調整 なぜなのか？
             enableSleeping: true
         },
     },
